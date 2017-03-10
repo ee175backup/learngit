@@ -67,6 +67,13 @@ def main():
         print('Files:')
         for item in items:
             print('{0} ({1})'.format(item['name'], item['id']))
+    file_metadata = {
+      'name' : 'Invoices',
+      'mimeType' : 'application/vnd.google-apps.folder'
+    }
+    file = drive_service.files().create(body=file_metadata,
+                                    fields='id').execute()
+    print 'Folder ID: %s' % file.get('id')
 
 if __name__ == '__main__':
     main()
